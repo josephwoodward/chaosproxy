@@ -1,0 +1,9 @@
+{
+  "config": {
+
+  },
+  "endpoints": [{
+    "path": "/products/",
+    "delay": 300
+  }]
+}
