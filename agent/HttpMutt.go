@@ -21,31 +21,33 @@ func Log(configLocation string, port string) {
 
 func setProxy(config configuration.ConfigurationOptions, port string) {
 
-	target := "https://requestb.in/wb042mwb"
+	target := "http://localhost:5000"
 	remote, err := url.Parse(target)
 	if err != nil {
 		panic(err)
 	}
 
-	_ = httputil.NewSingleHostReverseProxy(remote)
+	proxy := httputil.NewSingleHostReverseProxy(remote)
 
 	r := mux.NewRouter()
 	for _, endpoint := range config.Endpoints {
-		r.HandleFunc(endpoint.Path, Handler)
+		r.HandleFunc(endpoint.Path, handler(proxy))
 	}
 
 	http.Handle("/", r)
 	http.ListenAndServe(":"+port, r)
 }
 
-func Handler(w http.ResponseWriter, request *http.Request) {
-	fmt.Println(request.Host)
-}
+//func Handler(w http.ResponseWriter, request *http.Request) {
+//	fmt.Println(request.Host)
+//}
 
 func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
 	_ = p
 	return func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = mux.Vars(r)["rest"]
+
+		fmt.Println(r.Body)
+		//r.URL.Path = mux.Vars(r)["rest"]
 		p.ServeHTTP(w, r)
 	}
 }
