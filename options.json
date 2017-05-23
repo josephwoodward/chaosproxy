@@ -10,5 +10,9 @@
     "host": "www.bbc.co.uk",
     "url": "\/weather(\/?)$",
     "delay": 50000
+  },{
+    "host": "www.reddit.com",
+    "url": "\/r\/programming(\/?)$",
+    "delay": 50000
   }]
 }

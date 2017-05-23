@@ -34,7 +34,7 @@ func setProxy(config configuration.ConfigurationOptions, port string) {
 			fmt.Printf("Invalid regex format on URL.\n")
 		}
 
-		proxy.OnRequest(goproxy.DstHostIs(endpoint.Host), goproxy.UrlMatches(regex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+		go proxy.OnRequest(goproxy.DstHostIs(endpoint.Host), goproxy.UrlMatches(regex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 			return routeFactory(endpoint, req, ctx)
 		})
 	}
