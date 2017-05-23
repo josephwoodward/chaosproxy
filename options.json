@@ -3,7 +3,12 @@
 
   },
   "endpoints": [{
-    "path": "/about/",
-    "delay": 300
+    "host": "josephwoodward.co.uk",
+    "url": "\/page\/contact(\/?)$",
+    "delay": 3000
+  },{
+    "host": "www.bbc.co.uk",
+    "url": "\/weather(\/?)$",
+    "delay": 50000
   }]
 }

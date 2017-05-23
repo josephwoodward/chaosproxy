@@ -1,38 +1,18 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;HttpMutt&gt;">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../HttpLogger" />
+      <root url="file://$PROJECT_DIR$/../awesomeProject" />
       <root url="file://$PROJECT_DIR$/../github.com" />
-      <root url="file://$PROJECT_DIR$/../golang.org" />
-      <root url="file://$PROJECT_DIR$/../DemoProject" />
-      <root url="file://$PROJECT_DIR$/../dockersync" />
-      <root url="file://$PROJECT_DIR$/../SearchUtil" />
-      <root url="file://$PROJECT_DIR$/../stiringutil" />
-      <root url="file://$PROJECT_DIR$/../HelloWorld" />
-      <root url="file://$PROJECT_DIR$/../WikiDemo" />
-      <root url="file://$PROJECT_DIR$/../proxytest" />
-      <root url="file://$PROJECT_DIR$/../MonkeyLang" />
-      <root url="file://$PROJECT_DIR$/../MockApi" />
-      <root url="file://$PROJECT_DIR$/../renameit" />
-      <root url="file://$PROJECT_DIR$/../proxy" />
-      <root url="file://$PROJECT_DIR$/../GoDemo" />
+      <root url="file://$PROJECT_DIR$/../gatekeeper" />
+      <root url="file://$PROJECT_DIR$/../awesomeProject1" />
+      <root url="file://$PROJECT_DIR$/../goproxy" />
     </CLASSES>
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/../HttpLogger" />
+      <root url="file://$PROJECT_DIR$/../awesomeProject" />
       <root url="file://$PROJECT_DIR$/../github.com" />
-      <root url="file://$PROJECT_DIR$/../golang.org" />
-      <root url="file://$PROJECT_DIR$/../DemoProject" />
-      <root url="file://$PROJECT_DIR$/../dockersync" />
-      <root url="file://$PROJECT_DIR$/../SearchUtil" />
-      <root url="file://$PROJECT_DIR$/../stiringutil" />
-      <root url="file://$PROJECT_DIR$/../HelloWorld" />
-      <root url="file://$PROJECT_DIR$/../WikiDemo" />
-      <root url="file://$PROJECT_DIR$/../proxytest" />
-      <root url="file://$PROJECT_DIR$/../MonkeyLang" />
-      <root url="file://$PROJECT_DIR$/../MockApi" />
-      <root url="file://$PROJECT_DIR$/../renameit" />
-      <root url="file://$PROJECT_DIR$/../proxy" />
-      <root url="file://$PROJECT_DIR$/../GoDemo" />
+      <root url="file://$PROJECT_DIR$/../gatekeeper" />
+      <root url="file://$PROJECT_DIR$/../awesomeProject1" />
+      <root url="file://$PROJECT_DIR$/../goproxy" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />

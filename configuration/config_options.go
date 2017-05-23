@@ -9,6 +9,8 @@ type Config struct {
 }
 
 type Endpoint struct {
-	Path  string
-	Delay int
+	Url                string
+	Host               string
+	Delay              int
+	ResponseStatusCode int
 }
