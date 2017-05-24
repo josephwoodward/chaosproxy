@@ -1,4 +1,4 @@
-package configuration
+package config
 
 type ConfigurationOptions struct {
 	Config    Config
