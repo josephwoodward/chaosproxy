@@ -1,8 +1,9 @@
-package agent
+package chaoskitten
 
 import (
-	"HttpMutt/behaviours"
-	"HttpMutt/configuration"
+	"chaos-kitten/behaviours"
+	"chaos-kitten/configuration"
+	"fmt"
 	"github.com/elazarl/goproxy"
 	"github.com/golang/glog"
 	"net/http"
@@ -20,7 +21,7 @@ func Proxy(configLocation string) {
 
 	config = cfg
 
-	glog.Infof("Starting proxy, listening on port %s", config.Config.Port)
+	fmt.Printf("Starting proxy, listening on port :%s\n", config.Config.Port)
 	setProxy()
 }
 
