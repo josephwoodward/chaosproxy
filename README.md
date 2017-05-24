@@ -62,6 +62,6 @@ In Firefox go to `Options > Advanced > Network > Connection Settings`
 
 ## Coming soon
 
-- HTTP endpoint allowing you to post configuration change behaviours to your Chaos Kitten
-- Watch for config changes
+- HTTP endpoint allowing you to post behaviour changes to your Chaos Kitten
+- Watch for config file changes
 - Tests!
