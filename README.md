@@ -2,6 +2,10 @@
 
 A controlled means of introducing chaos into your infrastructure.
 
+Available behaviours (more coming soon):
+- Force latency on endpoints
+- Specify response status code
+
 ## How to use it:
 
 ### Step 1: Create a config file
