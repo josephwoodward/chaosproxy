@@ -40,7 +40,7 @@ endpoints:
 $ chaos_kitten.exe -logtostderr=true
 ```
 
-## Step 3: Proxy requests
+### Step 3: Proxy requests
 
 **IIS:**
 
