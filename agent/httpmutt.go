@@ -12,7 +12,7 @@ import (
 
 const delay = 5000
 
-func Log(configLocation string, port string) {
+func Log(configLocation string, port string, outputLog bool) {
 	config, err := configuration.ParseConfig(configLocation)
 	if err != nil {
 		panic(err)

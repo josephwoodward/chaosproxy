@@ -11,6 +11,10 @@
     "url": "\/weather(\/?)$",
     "delay": 50000
   },{
+    "host": "localhost:5000",
+    "url": "\/api\/values(\/?)$",
+    "delay": 50000
+  },{
     "host": "www.reddit.com",
     "url": "\/r\/programming(\/?)$",
     "delay": 50000
