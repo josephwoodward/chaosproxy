@@ -6,11 +6,12 @@ type ConfigurationOptions struct {
 }
 
 type Config struct {
+	Port string
 }
 
 type Endpoint struct {
-	Url                string
 	Host               string
+	Url                string
 	Delay              int
-	ResponseStatusCode int
+	ResponseStatusCode int "responseStatusCode"
 }

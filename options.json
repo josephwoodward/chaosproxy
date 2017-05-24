@@ -3,20 +3,12 @@
 
   },
   "endpoints": [{
-    "host": "josephwoodward.co.uk",
-    "url": "\/page\/contact(\/?)$",
-    "delay": 3000
+    "host": "publicapi",
+    "url": "\/terms(\/?)$",
+    "delay": 5000
   },{
     "host": "www.bbc.co.uk",
-    "url": "\/weather(\/?)$",
-    "delay": 50000
-  },{
-    "host": "localhost:5000",
-    "url": "\/api\/values(\/?)$",
-    "delay": 50000
-  },{
-    "host": "www.reddit.com",
-    "url": "\/r\/programming(\/?)$",
-    "delay": 50000
+    "url": "\/terms(\/?)$",
+    "delay": 5000
   }]
 }

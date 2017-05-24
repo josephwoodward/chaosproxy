@@ -6,55 +6,65 @@ import (
 	"github.com/golang/glog"
 	"net/http"
 	"regexp"
+	"strconv"
 	"time"
 )
 
-const delay = 5000
+var config configuration.ConfigurationOptions
 
-func Log(configLocation string, port string, outputLog bool) {
-	config, err := configuration.ParseConfig(configLocation)
+func Proxy(configLocation string) {
+	cfg, err := configuration.ParseYml(configLocation)
 	if err != nil {
 		glog.Fatal(err)
 	}
 
-	glog.Error("Hello world!")
-	glog.Infof("Starting proxy, listening on port %s", port)
-	setProxy(config, port)
+	config = cfg
 
+	glog.Infof("Starting proxy, listening on port %s", config.Config.Port)
+	setProxy()
 }
 
-func setProxy(config configuration.ConfigurationOptions, port string) {
+func setProxy() {
 
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Verbose = false
 
 	for _, endpoint := range config.Endpoints {
-		regex, err := regexp.Compile(endpoint.Url)
+		hostRegex, err := regexp.Compile(endpoint.Host)
 		if err != nil {
-			glog.Warning("Invalid regex format on URL.\n")
+			glog.Error("Invalid regex format on endpoint.host", err)
 		}
 
-		go proxy.OnRequest(goproxy.DstHostIs(endpoint.Host), goproxy.UrlMatches(regex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+		urlRegex, err := regexp.Compile(endpoint.Url)
+		if err != nil {
+			glog.Error("Invalid regex format on endpoint.url", err)
+		}
+
+		go proxy.OnRequest(goproxy.ReqHostMatches(hostRegex), goproxy.UrlMatches(urlRegex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 			return routeFactory(endpoint, req, ctx)
 		})
 	}
 
-	glog.Fatal(http.ListenAndServe(":"+port, proxy))
+	glog.Fatal(http.ListenAndServe(":"+config.Config.Port, proxy))
 }
 
 func routeFactory(config configuration.Endpoint, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 	glog.Infof("Matched host '%s'", req.Host)
-	return injectLatency(config, req, ctx)
-}
 
-func blockRequest(r *http.Request, c *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	if h, _, _ := time.Now().Clock(); h >= 8 && h <= 17 {
-		return r, goproxy.NewResponse(r, goproxy.ContentTypeText, http.StatusForbidden, "Don't waste your time!")
+	if config.ResponseStatusCode > 0 {
+		r, _ := injectLatency(time.Duration(config.Delay), req, ctx)
+		return blockRequest(config.ResponseStatusCode, r, ctx)
 	}
-	return r, nil
+
+	return injectLatency(time.Duration(config.Delay), req, ctx)
 }
 
-func injectLatency(config configuration.Endpoint, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+func blockRequest(statusCode int, req *http.Request, c *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+	glog.Infof("Returning status code '%s' for '%s' on path '%s'", strconv.Itoa(statusCode), req.Host, req.URL.Path)
+	return req, goproxy.NewResponse(req, goproxy.ContentTypeText, statusCode, "")
+}
+
+func injectLatency(delay time.Duration, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 	glog.Infof("Injecting %d milliseconds latency for '%s' on path '%s'", delay, req.Host, req.URL.Path)
 	time.Sleep(time.Millisecond * delay)
 	return req, nil
