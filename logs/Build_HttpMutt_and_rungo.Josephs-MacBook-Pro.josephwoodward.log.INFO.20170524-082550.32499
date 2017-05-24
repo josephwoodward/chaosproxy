@@ -1,0 +1,8 @@
+Log file created at: 2017/05/24 08:25:50
+Running on machine: Josephs-MacBook-Pro
+Binary: Built with gc go1.8 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0524 08:25:50.303433   32499 httpmutt.go:20] Hello world!
+I0524 08:25:50.304043   32499 httpmutt.go:21] Starting proxy, listening on port 8080
+I0524 08:25:55.140694   32499 httpmutt.go:46] Matched host 'localhost:5000'
+I0524 08:25:55.140707   32499 httpmutt.go:58] Injecting 5000 milliseconds latency for 'localhost:5000' on path '/api/values'
