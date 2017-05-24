@@ -1,12 +1,12 @@
 package agent
 
 import (
+	"HttpMutt/behaviours"
 	"HttpMutt/configuration"
 	"github.com/elazarl/goproxy"
 	"github.com/golang/glog"
 	"net/http"
 	"regexp"
-	"strconv"
 	"time"
 )
 
@@ -52,20 +52,9 @@ func routeFactory(config configuration.Endpoint, req *http.Request, ctx *goproxy
 	glog.Infof("Matched host '%s'", req.Host)
 
 	if config.ResponseStatusCode > 0 {
-		r, _ := injectLatency(time.Duration(config.Delay), req, ctx)
-		return blockRequest(config.ResponseStatusCode, r, ctx)
+		r, _ := behaviour.InjectLatency(time.Duration(config.Delay), req, ctx)
+		return behaviour.BlockRequest(config.ResponseStatusCode, r, ctx)
 	}
 
-	return injectLatency(time.Duration(config.Delay), req, ctx)
-}
-
-func blockRequest(statusCode int, req *http.Request, c *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	glog.Infof("Returning status code '%s' for '%s' on path '%s'", strconv.Itoa(statusCode), req.Host, req.URL.Path)
-	return req, goproxy.NewResponse(req, goproxy.ContentTypeText, statusCode, "")
-}
-
-func injectLatency(delay time.Duration, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	glog.Infof("Injecting %d milliseconds latency for '%s' on path '%s'", delay, req.Host, req.URL.Path)
-	time.Sleep(time.Millisecond * delay)
-	return req, nil
+	return behaviour.InjectLatency(time.Duration(config.Delay), req, ctx)
 }
