@@ -1,12 +1,14 @@
 # Chaos Kitten (better name coming soon?)
 
-A controlled means of introducing chaos into your infrastructure.
+A controlled means of introducing chaos into your infrastructure for Windows, Mac and Linux.
 
 Available behaviours (more coming soon):
 - Force latency on endpoints
 - Specify response status code
 
 ## How to use it:
+
+Download `chaos_kitten.exe` from `/build/`.
 
 ### Step 1: Create a config file
 
@@ -59,6 +61,12 @@ You may need to restart IIS `iisreset /stop` then `iisreset /start`
 **Firefox:** 
 
 In Firefox go to `Options > Advanced > Network > Connection Settings`
+
+## Compatibility:
+
+- Mac
+- Windows
+- Linux
 
 ## Coming soon
 

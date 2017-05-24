@@ -1,0 +1,20 @@
+config:
+  port: 8082
+
+endpoints:
+  - host: (\S+)-consumer-iapi-(\S+)$
+    url: \/consumer\/optinflow(\/?)$
+    methods: [GET]
+    delay: 5000
+    responseStatusCode: 504
+
+  - host: (\S+)-public-iapi-(\S+)$
+    url: \/authorize\/providers\?tenant=(es|ie|it)$
+    methods: [GET]
+    delay: 5000
+
+  - host: www.bbc.co.uk$
+    url: \/weather(\/?)$
+    methods: [GET]
+    delay: 5000
+    responseStatusCode: 504
