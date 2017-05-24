@@ -8,8 +8,6 @@ Available behaviours (more coming soon):
 
 ## How to use it:
 
-Download `chaos_kitten.exe` from `/build/`.
-
 ### Step 1: Create a config file
 
 ```yml
