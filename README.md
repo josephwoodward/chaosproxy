@@ -37,10 +37,13 @@ endpoints:
     responseStatusCode: 504
 ```
 
-### Step 2: Run it  
+### Step 2: Run it
+
 ```
 $ chaos_kitten.exe -logtostderr=true
 ```
+
+Note: Use `$ chaos_kitten.exe -h` to view all CLI options.
 
 ### Step 3: Proxy requests
 

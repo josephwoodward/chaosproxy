@@ -1,5 +1,5 @@
 config:
-  port: 8082
+  port: 8083
 
 endpoints:
   - host: (\S+)-consumer-iapi-(\S+)$
@@ -16,5 +16,5 @@ endpoints:
   - host: www.bbc.co.uk$
     url: \/weather(\/?)$
     delay: 5000
-    range: 0
+    range: 50
     responseStatusCode: 504
