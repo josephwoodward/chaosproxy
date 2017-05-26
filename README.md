@@ -40,10 +40,10 @@ endpoints:
 ### Step 2: Run it
 
 ```
-$ chaos_kitten.exe -logtostderr=true
+$ chaos_koko.exe -logtostderr=true
 ```
 
-Note: Use `$ chaos_kitten.exe -h` to view all CLI options.
+Note: Use `$ chaos_koko.exe -h` to view all CLI options.
 
 ### Step 3: Proxy requests
 
@@ -75,5 +75,6 @@ In Firefox go to `Options > Advanced > Network > Connection Settings`
 
 - Ability to target requests based on HTTP request methods (GET, POST etc)
 - HTTP endpoint allowing you to post behaviour changes to your Chaos Kitten
+- Set behaviour rules to activate/deactivate between certain dates and times
 - Watch for config file changes
 - Tests!
