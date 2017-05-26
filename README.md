@@ -21,20 +21,17 @@ config:
 endpoints:
   - host: (\S+)-consumer-iapi-(\S+)$ # required
     url: \/consumer\/optinflow(\/?)$ # required
-    methods: [GET] # coming soon
     delay: 5000 # optional - default is 0
     range: 50 # required
     responseStatusCode: 504 # optional - default is 200
 
   - host: (\S+)-public-iapi-(\S+)$
     url: \/authorize\/providers\?tenant=(es|ie|it)$
-    methods: [GET]
     delay: 5000
     range: 30
 
   - host: www.bbc.co.uk$
     url: \/weather(\/?)$
-    methods: [GET]
     delay: 5000
     range: 100
     responseStatusCode: 504
@@ -73,6 +70,7 @@ In Firefox go to `Options > Advanced > Network > Connection Settings`
 
 ## Coming soon
 
+- Ability to target requests based on HTTP request methods (GET, POST etc)
 - HTTP endpoint allowing you to post behaviour changes to your Chaos Kitten
 - Watch for config file changes
 - Tests!
