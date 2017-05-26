@@ -14,4 +14,5 @@ type Endpoint struct {
 	Url                string
 	Delay              int
 	ResponseStatusCode int "responseStatusCode"
+	Range              int
 }

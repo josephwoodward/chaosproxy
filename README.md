@@ -1,8 +1,10 @@
-# Chaos Kitten (better name coming soon?)
+# ChaosKoko (better name coming soon?)
 
 A controlled means of introducing chaos into your infrastructure for Windows, Mac and Linux.
 
-Available behaviours (more coming soon):
+Features:
+- Target some or all endpoints via regular expression
+- Ability to target only a proportion of requests (ie: 30% of requests will timeout)
 - Force latency on endpoints
 - Specify response status code
 
@@ -21,17 +23,20 @@ endpoints:
     url: \/consumer\/optinflow(\/?)$ # required
     methods: [GET] # coming soon
     delay: 5000 # optional - default is 0
+    range: 50 # required
     responseStatusCode: 504 # optional - default is 200
 
   - host: (\S+)-public-iapi-(\S+)$
     url: \/authorize\/providers\?tenant=(es|ie|it)$
     methods: [GET]
     delay: 5000
+    range: 30
 
   - host: www.bbc.co.uk$
     url: \/weather(\/?)$
     methods: [GET]
     delay: 5000
+    range: 100
     responseStatusCode: 504
 ```
 
