@@ -1,4 +1,4 @@
-# ChaosKoko (better name coming soon?)
+# ChaosKoko
 
 A controlled means of introducing chaos into your infrastructure for Windows, Mac and Linux.
 
