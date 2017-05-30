@@ -3,9 +3,9 @@
 A controlled means of introducing chaos into your infrastructure for Windows, Mac and Linux.
 
 Features:
-- Target some or all endpoints via regular expression
+- Target HTTP endpoints (including DynamoDB, S3, or HTTP based APIs) via hostname or path regular expression
 - Ability to target only a proportion of requests (ie: 30% of requests will timeout)
-- Force latency on endpoints
+- Force latency or simulate throttling on HTTP based APIs
 - Specify response status code
 
 ## How to use it:
@@ -35,6 +35,11 @@ endpoints:
     delay: 5000
     range: 100
     responseStatusCode: 504
+    
+  - host: ^dynamodb.(\S+)$
+    url: ^(\S+)$
+    delay: 5000
+    range: 100
 ```
 
 ### Step 2: Run it
