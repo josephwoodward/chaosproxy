@@ -1,4 +1,4 @@
-# ChaosKoko
+# Chaos Proxy
 
 A controlled means of introducing chaos into your infrastructure for Windows, Mac and Linux.
 
@@ -40,10 +40,10 @@ endpoints:
 ### Step 2: Run it
 
 ```
-$ chaos_koko.exe -logtostderr=true
+$ chaos_proxy.exe -logtostderr=true
 ```
 
-Note: Use `$ chaos_koko.exe -h` to view all CLI options.
+Note: Use `$ chaos_proxy.exe -h` to view all CLI options.
 
 ### Step 3: Proxy requests
 
@@ -74,7 +74,8 @@ In Firefox go to `Options > Advanced > Network > Connection Settings`
 ## Coming soon
 
 - Ability to target requests based on HTTP request methods (GET, POST etc)
-- HTTP endpoint allowing you to post behaviour changes to your Chaos Kitten
+- HTTP endpoint allowing you to post behaviour changes to Chaos Proxy
+- Dashboard allowing you to visualise traffic flowing through proxy and matching behaviours
 - Set behaviour rules to activate/deactivate between certain dates and times
 - Watch for config file changes
 - Tests!

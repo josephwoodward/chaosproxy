@@ -1,8 +1,8 @@
-package chaoskoko
+package chaosproxy
 
 import (
-	"chaoskoko/behaviours"
-	"chaoskoko/config"
+	"chaosproxy/behaviours"
+	"chaosproxy/config"
 	"fmt"
 	"github.com/elazarl/goproxy"
 	"github.com/golang/glog"
