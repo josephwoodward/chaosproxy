@@ -6,7 +6,8 @@ type ConfigurationOptions struct {
 }
 
 type Config struct {
-	Port string
+	Port    string
+	Enabled bool
 }
 
 type Endpoint struct {

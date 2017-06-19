@@ -14,6 +14,7 @@ import (
 )
 
 var cfg config.ConfigurationOptions
+var totalRequests int
 
 func Proxy(args config.CommandLineArgs) {
 	c, err := config.ParseYml(args.ConfigLocation)
@@ -44,6 +45,10 @@ func setProxy() {
 		}
 
 		go proxy.OnRequest(goproxy.ReqHostMatches(hostRegex), goproxy.UrlMatches(urlRegex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+			if !cfg.Config.Enabled {
+				return behaviour.PassthroughRequest(req, ctx)
+			}
+
 			return behaviourFactory(endpoint, req, ctx)
 		})
 	}
@@ -52,7 +57,9 @@ func setProxy() {
 }
 
 func behaviourFactory(config config.Endpoint, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+	totalRequests++
 	glog.Infof("Matched host '%s'", req.Host)
+	glog.Infof("Creating request '%s'", strconv.Itoa(totalRequests))
 
 	if trafficInRange(config.Range) {
 		glog.Infof("Request is within range of %s", strconv.Itoa(config.Range))
