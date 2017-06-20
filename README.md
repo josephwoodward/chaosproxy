@@ -22,7 +22,7 @@ endpoints:
   - host: (\S+)-consumer-iapi-(\S+)$ # required
     url: \/consumer\/optinflow(\/?)$ # required
     delay: 5000 # optional - default is 0
-    range: 50 # required
+    range: 50 # optional - default is 100
     responseStatusCode: 504 # optional - default is 200
 
   - host: (\S+)-public-iapi-(\S+)$
