@@ -4,17 +4,14 @@ import (
 	"chaosproxy/behaviours"
 	"chaosproxy/config"
 	"fmt"
-	"github.com/elazarl/goproxy"
-	"github.com/golang/glog"
-	"math/rand"
 	"net/http"
 	"regexp"
-	"strconv"
-	"time"
+
+	"github.com/elazarl/goproxy"
+	"github.com/golang/glog"
 )
 
 var cfg config.ConfigurationOptions
-var totalRequests int
 
 func Proxy(args config.CommandLineArgs) {
 	c, err := config.ParseYml(args.ConfigLocation)
@@ -46,35 +43,12 @@ func setProxy() {
 
 		go proxy.OnRequest(goproxy.ReqHostMatches(hostRegex), goproxy.UrlMatches(urlRegex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 			if !cfg.Config.Enabled {
-				return behaviour.PassthroughRequest(req, ctx)
+				return behaviour.ForwardRequest(req, ctx)
 			}
 
-			return behaviourFactory(endpoint, req, ctx)
+			return behaviour.GetBehaviour(endpoint, req, ctx)
 		})
 	}
 
 	glog.Fatal(http.ListenAndServe(":"+cfg.Config.Port, proxy))
-}
-
-func behaviourFactory(config config.Endpoint, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	totalRequests++
-	glog.Infof("Matched host '%s'", req.Host)
-	glog.Infof("Creating request '%s'", strconv.Itoa(totalRequests))
-
-	if trafficInRange(config.Range) {
-		glog.Infof("Request is within range of %s", strconv.Itoa(config.Range))
-		if config.ResponseStatusCode > 0 {
-			r, _ := behaviour.InjectLatency(time.Duration(config.Delay), req, ctx)
-			return behaviour.BlockRequest(config.ResponseStatusCode, r, ctx)
-		}
-
-		return behaviour.InjectLatency(time.Duration(config.Delay), req, ctx)
-	}
-
-	return req, ctx.Resp
-}
-
-func trafficInRange(endpointRange int) bool {
-	randomVal := rand.Intn(100-1) + 1
-	return randomVal <= endpointRange
 }
