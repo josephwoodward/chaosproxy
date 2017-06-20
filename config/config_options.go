@@ -1,6 +1,7 @@
 package config
 
 const DefaultTrafficRange = 100
+const DefaultEnabled = true
 
 type ConfigurationOptions struct {
 	Config    Config
@@ -9,7 +10,7 @@ type ConfigurationOptions struct {
 
 type Config struct {
 	Port    string
-	Enabled bool
+	Enabled *bool `yaml:"enabled,omitempty"`
 }
 
 type Endpoint struct {
@@ -26,4 +27,12 @@ func (d Endpoint) RangeOrDefault() int {
 	}
 
 	return DefaultTrafficRange
+}
+
+func (d Config) IsEnabled() bool {
+	if d.Enabled != nil {
+		return *d.Enabled
+	}
+
+	return DefaultEnabled
 }

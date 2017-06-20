@@ -16,6 +16,7 @@ Features:
 # config.yml
 
 config:
+  enabled: true # optional
   port: 8082
 
 endpoints:

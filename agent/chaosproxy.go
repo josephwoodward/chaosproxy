@@ -41,8 +41,9 @@ func setProxy() {
 			glog.Error("Invalid regex format on endpoint.url", err)
 		}
 
+		behavioursEnabled := cfg.Config.IsEnabled()
 		go proxy.OnRequest(goproxy.ReqHostMatches(hostRegex), goproxy.UrlMatches(urlRegex)).DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-			if !cfg.Config.Enabled {
+			if !behavioursEnabled {
 				return behaviour.ForwardRequest(req, ctx)
 			}
 
