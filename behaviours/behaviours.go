@@ -16,7 +16,7 @@ func BlockRequest(statusCode int, req *http.Request, c *goproxy.ProxyCtx) (*http
 
 func InjectLatency(delay time.Duration, req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 	glog.Infof("Injecting %d milliseconds latency for '%s' on path '%s'", delay, req.Host, req.URL.Path)
-	if delay > 0 {
+	if delay <= 0 {
 		return req, nil
 	}
 

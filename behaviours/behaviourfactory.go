@@ -21,13 +21,15 @@ func GetBehaviour(config config.Endpoint, req *http.Request, ctx *goproxy.ProxyC
 		return req, ctx.Resp
 	}
 
-	glog.Infof("Request is within range of %s", config.RangeOrDefault())
+	glog.Infof("Request is within range of %s", strconv.Itoa(config.RangeOrDefault()))
+	delay := time.Duration(config.Delay)
+
 	if config.ResponseStatusCode > 0 {
-		r, _ := InjectLatency(time.Duration(config.Delay), req, ctx)
+		r, _ := InjectLatency(delay, req, ctx)
 		return BlockRequest(config.ResponseStatusCode, r, ctx)
 	}
 
-	return InjectLatency(time.Duration(config.Delay), req, ctx)
+	return InjectLatency(delay, req, ctx)
 }
 
 func trafficInRange(endpointRange int) bool {

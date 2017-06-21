@@ -5,7 +5,7 @@ endpoints:
   - host: (\S+)-consumer-iapi-(\S+)$
     url: \/consumer\/optinflow(\/?)$
     delay: 5000
-    range: 55
+    range: 50
     responseStatusCode: 504
 
   - host: (\S+)-public-iapi-(\S+)$
@@ -14,11 +14,6 @@ endpoints:
     delay: 5000
 
   - host: www.bbc.co.uk$
-    url: (\S+)
+    url: \/weather(\/?)$
     delay: 5000
-    range: 35
-
-  - host: localhost:5000$
-    url: \/Home\/About(\/?)$
-    delay: 3000
-    range: 30
+    range: 100
