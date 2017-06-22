@@ -17,11 +17,13 @@ func GetBehaviour(config config.Endpoint, req *http.Request, ctx *goproxy.ProxyC
 	glog.Infof("Matched host '%s'", req.Host)
 	glog.Infof("Creating request '%s'", strconv.Itoa(totalRequests))
 
-	if !trafficInRange(config.RangeOrDefault()) {
+	trafficRange := config.RangeOrDefault()
+	if !trafficInRange(trafficRange) {
+		glog.Infof("Request out of range of %s", strconv.Itoa(trafficRange))
 		return req, ctx.Resp
 	}
 
-	glog.Infof("Request is within range of %s", strconv.Itoa(config.RangeOrDefault()))
+	glog.Infof("Request in range of %s", strconv.Itoa(trafficRange))
 	delay := time.Duration(config.Delay)
 
 	if config.ResponseStatusCode > 0 {
