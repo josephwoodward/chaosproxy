@@ -18,25 +18,26 @@ Features:
 config:
   enabled: true # optional
   port: 8082
-
+  
 endpoints:
+   
   - host: (\S+)-consumer-iapi-(\S+)$ # required
     url: \/consumer\/optinflow(\/?)$ # required
     delay: 5000 # optional - default is 0
     range: 50 # optional - default is 100
     responseStatusCode: 504 # optional - default is 200
-
+  
   - host: (\S+)-public-iapi-(\S+)$
     url: \/authorize\/providers\?tenant=(es|ie|it)$
     delay: 5000
     range: 30
-
+  
   - host: www.bbc.co.uk$
     url: \/weather(\/?)$
     delay: 5000
     range: 100
     responseStatusCode: 504
-    
+  
   - host: ^dynamodb.(\S+)$
     url: ^(\S+)$
     delay: 5000
