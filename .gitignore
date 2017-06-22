@@ -2,6 +2,7 @@
 .idea/*
 logs
 logs/*
+build
 
 # Binaries for programs and plugins
 *.exe
