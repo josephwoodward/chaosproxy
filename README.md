@@ -80,7 +80,6 @@ In Firefox go to `Options > Advanced > Network > Connection Settings`
 
 ## Coming soon
 
-- Add ability to target DynamoDB and simulate throttling
 - Ability to target requests based on HTTP request methods (GET, POST etc)
 - HTTP endpoint allowing you to post behaviour changes to Chaos Proxy
 - Dashboard allowing you to visualise traffic flowing through proxy and matching behaviours
