@@ -2,6 +2,7 @@ config:
   port: 8083
 
 endpoints:
+
   - host: (\S+)-consumer-iapi-(\S+)$
     url: \/consumer\/optinflow(\/?)$
     delay: 5000
